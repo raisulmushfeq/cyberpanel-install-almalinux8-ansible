@@ -1,0 +1,17 @@
+---
+  - name: Updating the server (same as dnf update)
+    dnf:
+      name: '*'
+      state: latest
+  - name: Install epel-release mainly and some other packages
+      dnf:
+        name:
+          - epel-release
+  - name: install other packages after installing epel-release
+    yum:
+      name:
+        - htop
+        - atop
+        - iftop
+        - screen
+      state: present

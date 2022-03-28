@@ -1,0 +1,7 @@
+---
+- name: Install Cyberpanel Server
+  hosts: cyberpanel
+  become: yes
+  gather_facts: True
+  roles:
+    - { role: install-cyberpanel, tags: [cyberpanel] }
