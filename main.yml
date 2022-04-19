@@ -5,3 +5,5 @@
   gather_facts: True
   roles:
     - { role: install-cyberpanel, tags: [cyberpanel] }
+    - { role: ntp-config, tags: [ntp] }
+    - { role: firewall-config, tags: [firewall] }

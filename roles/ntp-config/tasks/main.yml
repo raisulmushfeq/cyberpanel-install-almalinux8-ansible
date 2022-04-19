@@ -1,0 +1,13 @@
+---
+# ntp configuration playbook https://unixcop.com/install-configure-ntp-on-multiple-centos-7-8-servers-using-ansible/
+
+  - name: Make sure Chrony is started up
+    service: name=chronyd state=started enabled=yes
+    tags: chrony
+
+  - name: set timezone
+    shell: timedatectl set-timezone Asia/Dhaka
+
+  - name: Sync hwclock
+    shell: hwclock -w
+    tags: ntp
