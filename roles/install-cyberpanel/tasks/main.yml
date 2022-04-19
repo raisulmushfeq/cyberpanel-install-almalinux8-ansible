@@ -14,5 +14,8 @@
         - atop
         - iftop
         - screen
+        - wget
       state: present
+  - name: Include the Cyberpanel Installer Task
+    include_tasks: install.yml
 
