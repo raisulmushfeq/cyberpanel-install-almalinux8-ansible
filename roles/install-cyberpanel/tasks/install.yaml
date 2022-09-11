@@ -10,7 +10,7 @@
   become_method: su
   become_user: root
   become_exe: sudo su -
-  command: sh /tmp/cyberpanel-install.sh -v ols -a -p r
+  shell: bash /tmp/cyberpanel-install.sh -v ols -a -p r
   args:
     chdir: /tmp
   async: 3600 #wait for upto 60 minutes
