@@ -1,0 +1,35 @@
+---
+  - name: Updating the server (dnf update)
+    dnf:
+      name: '*'
+      state: latest
+  - name: Install pre-requisit for other packages
+    dnf:
+      name:
+        - epel-release
+  - name: install other packages after installing epel-release
+    dnf:
+      name:
+        - htop
+        - atop
+        - iftop
+        - screen
+        - wget
+      state: present
+
+  - name: Check wheather cyberpanel is installed
+    stat:
+      path: '/usr/bin/cyberpanel'
+    register: cyberpanel_check
+    check_mode: no
+    failed_when: false
+    changed_when: false
+
+  - name: Register cyberpanel_installed variable
+    set_fact:
+      cyberpanel_installed: ture
+    when: cyberpanel_check.stat.exists
+
+  - name: Include the Cyberpanel Installer Task
+    include_tasks: install.yaml
+    when: cyberpanel_installed is not defined

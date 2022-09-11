@@ -1,0 +1,31 @@
+---
+- name: Download Cyberpanel
+  get_url:
+    url: https://cyberpanel.net/install.sh
+    dest: /tmp/cyberpanel-install.sh
+    mode: '755'
+    force: yes
+- name: Install Cyberpanel
+  become: yes # https://stackoverflow.com/questions/72077770/ansible-playbook-for-installing-cyberpanel-stops-execution
+  become_method: su
+  become_user: root
+  become_exe: sudo su -
+  command: sh /tmp/cyberpanel-install.sh -v ols -a -p r
+  args:
+    chdir: /tmp
+  async: 3600 #wait for upto 60 minutes
+  poll: 120 #check every 2 minutes
+  when: cyberpanel_installed is not defined
+  register: output
+
+- name: 'Checking the status'
+  async_status:
+    jid: "{{ output.ansible_job_id }}"
+  register: job_result
+  until: job_result.finished
+  retries: 150
+  delay: 60
+
+- name: debugging
+  debug:
+    var: output
