@@ -1,14 +1,22 @@
 ---
-  - name: Updating the server (dnf update)
-    dnf:
+  - name: Update packages
+    package:
       name: '*'
+      update-cache: True
       state: latest
-  - name: Install pre-requisit for other packages
-    dnf:
-      name:
-        - epel-release
+
+  - name: Install epel-release on CentOS
+    package:
+      name: epel-release
+    when: ansible_distribution == "Almalinux"
+
+  - name: Install software-properties-common on Ubuntu
+    package:
+      name: software-properties-common
+    when: ansible_distribution == "Ubuntu"
+
   - name: install other packages after installing epel-release
-    dnf:
+    package:
       name:
         - htop
         - atop

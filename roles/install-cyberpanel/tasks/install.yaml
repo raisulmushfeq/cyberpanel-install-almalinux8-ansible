@@ -6,7 +6,7 @@
     mode: '755'
     force: yes
 - name: Install Cyberpanel
-  become: yes # https://stackoverflow.com/questions/72077770/ansible-playbook-for-installing-cyberpanel-stops-execution
+  become: True # https://stackoverflow.com/questions/72077770/ansible-playbook-for-installing-cyberpanel-stops-execution
   become_method: su
   become_user: root
   become_exe: sudo su -
