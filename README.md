@@ -12,3 +12,19 @@ time ansible-playbook main.yaml
 ```
 time ansible-playbook main.yaml -u root
 ```
+
+## Reset Admin Password using:
+`adminPass newpassword`
+where 'newpassword' is your new strong password (Password should not contain special charecters)
+
+
+# Migration
+## cPanel to cyberpanel
+```
+mkdir /home/backup
+```
+upload backup file to /home/backup
+then run
+```
+/usr/local/CyberCP/bin/python /usr/local/CyberCP/plogical/cPanelImporter.py --path /home/backup
+```
