@@ -3,6 +3,10 @@ Ansible Script to automate installation of Cyberpanel Control Panel in Almalinux
 
 Note: This script is tested on vultr 22.04 vps
 
+After installation:
+1. Install ioncube Loader
+2. Install curl extension and enable it from php config file
+
 ## Run it using
 ```
 time ansible-playbook main.yaml
@@ -28,3 +32,7 @@ then run
 ```
 /usr/local/CyberCP/bin/python /usr/local/CyberCP/plogical/cPanelImporter.py --path /home/backup
 ```
+
+## Cyberpanel Log
+### Error Log
+`/usr/local/lsws/logs/error.log`
