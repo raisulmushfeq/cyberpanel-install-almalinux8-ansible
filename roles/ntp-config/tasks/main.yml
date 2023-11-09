@@ -1,5 +1,8 @@
 ---
 # ntp configuration playbook https://unixcop.com/install-configure-ntp-on-multiple-centos-7-8-servers-using-ansible/
+  - name: Install Chrony ntp package
+    package:
+      name: chrony
 
   - name: Make sure Chrony is started up
     service: name=chronyd state=started enabled=yes

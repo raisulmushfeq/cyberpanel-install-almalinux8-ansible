@@ -18,14 +18,6 @@
   when: cyberpanel_installed is not defined
   register: output
 
-- name: 'Checking the status'
-  async_status:
-    jid: "{{ output.ansible_job_id }}"
-  register: job_result
-  until: job_result.finished
-  retries: 150
-  delay: 60
-
 - name: debugging
   debug:
     var: output
